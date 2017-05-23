@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">myApp</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="button_name" >nút bấm</string>
+    <string name="message">Thông báo ví </string>dụ
+    <string-array name="array_test">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+
+
+    </string-array>
+</resources>

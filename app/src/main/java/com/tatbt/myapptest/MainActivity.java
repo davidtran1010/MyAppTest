@@ -61,9 +61,14 @@ public class MainActivity extends AppCompatActivity {
     }
 */
     public void butClick1(View view) {
-        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-        int birthYear = Integer.parseInt(edittext.getText().toString());
-        Toast.makeText(this,String.valueOf(currentYear-birthYear),Toast.LENGTH_LONG).show();
+        String message = getResources().getString(R.string.message);
+        String[] numbers = getResources().getStringArray(R.array.array_test);
+        //int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        //int birthYear = Integer.parseInt(edittext.getText().toString());
+        //Toast.makeText(this,String.valueOf(currentYear-birthYear),Toast.LENGTH_LONG).show();
+
+        Toast.makeText(this,numbers[0]+numbers[1]+numbers[2]+numbers[3],Toast.LENGTH_LONG).show();
+
     }
 
     @Override
