@@ -4,7 +4,10 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -60,6 +63,18 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this,"onStop",Toast.LENGTH_LONG).show();
     }
 */
+    public void butClick2(View view){
+        LayoutInflater layoutInflater = getLayoutInflater();
+        View view1 = layoutInflater.inflate(R.layout.showedlayout,null);
+        Toast toast = new Toast(getApplicationContext());
+        toast.setView(view1);
+        toast.setDuration(Toast.LENGTH_LONG);
+        //toast.setGravity(Gravity.CENTER_VERTICAL,0,0);
+        toast.show();
+
+
+
+    }
     public void butClick1(View view) {
         String message = getResources().getString(R.string.message);
         String[] numbers = getResources().getStringArray(R.array.array_test);
