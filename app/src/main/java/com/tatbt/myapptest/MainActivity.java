@@ -12,12 +12,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     Button button;
     EditText edittext;
     TextView txtDisplay;
+    ListView listView;
+    ArrayList<AdapterItems> arrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +39,22 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this,"onCreate",Toast.LENGTH_LONG).show();
 
         Log.i("my log:","fsgfffffffffffff");
+        listView = (ListView) findViewById(R.id.listView);
+
+        arrayList = new ArrayList<AdapterItems>();
+        MyCustomAdapter myCustomAdapter;
+
+        arrayList.add(new AdapterItems(123,"lap trinh vien","code nua code mai"));
+        arrayList.add(new AdapterItems(456,"nhan vien cua hang","phuc vu mon an"));
+        arrayList.add(new AdapterItems(786,"phi cong","lai may bay"));
+
+        for (AdapterItems a:arrayList) {
+            Log.i("Log: item:",a.ID + ":" + a.JobTitle + ":"+a.Description);
+        }
+        myCustomAdapter = new MyCustomAdapter(arrayList);
+
+        listView.setAdapter(myCustomAdapter);
+
 
 
 
@@ -71,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
         toast.setDuration(Toast.LENGTH_LONG);
         //toast.setGravity(Gravity.CENTER_VERTICAL,0,0);
         toast.show();
+
+
 
 
 
@@ -141,5 +165,48 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+    }
+    private class MyCustomAdapter extends BaseAdapter{
+        public ArrayList<AdapterItems> listnewsDataAdapter;
+
+
+
+        public MyCustomAdapter(ArrayList<AdapterItems> listnewsDataAdapter){
+            this.listnewsDataAdapter = listnewsDataAdapter;
+
+
+        }
+        @Override
+        public int getCount() {
+            return listnewsDataAdapter.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater mInflater = getLayoutInflater();
+            View myView = mInflater.inflate(R.layout.layout_ticket,null);
+
+            final AdapterItems s = listnewsDataAdapter.get(position);
+
+            TextView tvID = (TextView) myView.findViewById(R.id.txtID);
+            tvID.setText(""+s.ID);
+
+            TextView txtJobTitle = (TextView) myView.findViewById(R.id.txtJobTitle);
+            txtJobTitle.setText(s.JobTitle);
+
+            TextView txtDes = (TextView) myView.findViewById(R.id.txtjobDescription);
+            txtDes.setText(s.Description);
+            return myView;
+        }
     }
 }
